@@ -2,57 +2,97 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package fatecfranca.lista1.casa;
+package lista2.exe0;
 
 /**
  *
  * @author aline
  */
+//CLICAR COM O BOTÃO DIREITO, INSERT CODE, GETTER AND SETER.
 public class Cliente {
-    int numeroConta;
-    int numeroAgencia;
-    String nome;
-    float saldo;
-    
-    public Cliente(){
+    private String numeroConta, numeroAgencia, nome;
+    private float saldo;
+
+    //BOTÃO DIREITO INSERT CODE, CONSTRUCTOR, NÃO MARCA NENHUMA CAIXA
+    public Cliente() {
     }
     
-    public Cliente ( int numeroConta, int numeroAgencia, String nome,
-            float saldo){
+    ////BOTÃO DIREITO INSERT CODE, CONSTRUCTOR, MARCA TODAS AS CAIXAS
+    public Cliente(String numeroConta, String numeroAgencia, String nome, float saldo) {
+        this.setNumeroConta  (numeroConta);
+        this.setNumeroAgencia (numeroAgencia);
+        this.setNome (nome);
+        this.setSaldo (saldo);
+    }
+
+    public String getNumeroConta() {
+        return numeroConta;
+    }
+    //, o número da conta deve obrigatoriamente ter 
+    //tamanho 8, contando o traço do dígito verificador. 
+    public final void setNumeroConta(String numeroConta) {
+        if (numeroConta.length() == 8 && numeroConta.charAt(6) == '-'){
         this.numeroConta = numeroConta;
-        this.numeroAgencia = numeroAgencia;
-        this.nome = nome;
-        this.saldo = saldo;
-    }
-    
-    public void mostrarObjeto(){
-         System.out.println( "Número da conta: " + this.numeroConta + "\nNúmero da agência:  " + this.numeroAgencia + "\nNome: " +
-               this.nome + " \nSaldo da conta: " + this.saldo);
-   }
-    
-    public void realizarDep(float x){
-        this.saldo = this.saldo + x;
-        System.out.println("Foi depositado o valor de: " + x);
-    }
-    
-    public void realizarSaq(float x){
-        if( this.saldo < x){
-          System.out.println("\nERRO, o valor de " + x + " não pode ser sacado");
         }
         else{
-          this.saldo = this.saldo - x;
-        System.out.println("\nFoi sacado o valor de: " + x);  
+            this.numeroConta = "";
+            System.out.println("Conta inválida, vai ficar vazia");
         }
-        
     }
-    
-    public void retorna(){
-        System.out.println("\nO número da conta: " + this.numeroConta + "\nO nome da pessoa é: " + this.nome + "\nO saldo da conta é: " + this.saldo);
-    }
-    
-   
-  }
-    
-    
-    
 
+    public String getNumeroAgencia() {
+        return numeroAgencia;
+    }
+
+    public final void setNumeroAgencia(String numeroAgencia) {
+        if (numeroAgencia.length() == 6 && numeroConta.charAt(4) == '-'){
+        this.numeroAgencia = numeroAgencia;
+        }
+        else{
+            this.numeroAgencia = "";
+            System.out.println("Agência inválida, vai ficar vazia");
+        }
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public final void setNome(String nome) {
+        if (nome.length() <= 30){
+        this.nome = nome;    
+        }
+        else{
+            this.nome = "";
+            System.out.println("Nome inválido, vai  ficar vazio");
+        }
+    }
+
+    public float getSaldo() {
+        return saldo;
+    }
+
+    public final void setSaldo(float saldo) {
+        if (saldo >= 0){
+        this.saldo = saldo;    
+        }
+        else{
+            System.out.println("Saldo insuficiente");
+        }
+    }
+    
+    public void depositar (float x){
+        this.setSaldo(this.saldo + x);
+    }
+    
+    public void sacar (float x){
+        this.setSaldo(this.saldo - x);
+    }
+    //BOTÃO DIREITO EM CIMA DO SALDO, INSERT CODE, toString()
+    @Override
+    public String toString() {
+        return "Cliente{" + "numeroConta=" + numeroConta + ", numeroAgencia=" + numeroAgencia + ", nome=" + nome + ", saldo=" + saldo + '}';
+    }
+    
+    
+}
